@@ -1,0 +1,34 @@
+#dadosCanvas{
+    padding: 20px;
+    width: 150px;
+    height: 320px;
+    float: left;
+}
+
+#dadosElemento{
+    padding: 20px;
+    width: 150px;
+    height: 320px;
+    float: left;
+}
+
+input{
+    float: left;
+    width: 50px;
+    margin: 1px 0px 10px 0px;
+}
+
+label{
+    float: left;    
+    width: 80px;
+    margin-right: 10px;
+}
+
+button{
+    margin: 5px 5px 0px 0px;
+}
+
+canvas{
+    float: left;
+}
+
