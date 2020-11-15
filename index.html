@@ -4,9 +4,9 @@
         <title>Editor de Cena</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-       
+
         <link rel="stylesheet" href="css/estilo.css" />
     </head>
     <body style="margin: 0px; padding: 0px">
@@ -23,12 +23,15 @@
             <input type="number" id="eixoy" onchange="alterarDadosCanvas()"/>
 
             <label for="grade">Grade:</label>
-            <input type="number" value="20" max="300" min="10" step="10" id="grade" onchange="alterarGrade()"/>            
-            
+            <input type="number" value="20" max="300" min="10" step="5" id="grade" onchange="alterarGrade()"/>            
+
             <input type="file" id="arquivo" onchange="novoElemento()" style="display: none;">
             <button onclick="document.getElementById('arquivo').click();"  title="Novo Elemento"><i class="material-icons">add</i></button>             
+
+            <input type="file" id="arquivoCena" onchange="importar()" style="display: none;">
+            <button onclick="document.getElementById('arquivoCena').click()" title="Importar"><i class="material-icons">cloud_upload</i></button>
             
-            <button onclick="exportar()" title="Exportar"><i class="material-icons">text_snippet</i></button>
+            <button onclick="exportar()" title="Exportar"><i class="material-icons">cloud_download</i></button>
 
         </form>
 
@@ -48,13 +51,13 @@
 
             <label for="altura">Altura:</label>
             <input type="number" id="altura" onchange="alterarDadosElemento()"/>
-            
+
             <button onclick="clonar()" title="Clonar Elemento"><i class="material-icons">content_copy</i></button>
-            
+
             <button onclick="excluir()" title="Excluir Elemento"><i class="material-icons">delete_forever</i></button>
-            
+
             <button onclick="enviarParaFrente()" title="Enviar para frente"><i class="material-icons">flip_to_front</i></button>
-            
+
             <button onclick="enviarParaTras()" title="Enviar para tras"><i class="material-icons">flip_to_back</i></button>
 
 
@@ -67,6 +70,7 @@
         <script src="js/editorcanvas.js"></script>
         <script src="js/carregadordeimagem.js"></script>
         <script src="js/formatadorpadrao.js"></script>
+        <script src="js/formatadorJSON.js"></script>
         <script src="js/grade.js"></script>
         <script src="js/main.js"></script>
     </body>

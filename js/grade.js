@@ -44,7 +44,7 @@ function Grade(dadosCanvas) {
 
     this.alterarGrade = function () {
         var valor = campoEspaco.value;
-        if (valor % 10 === 0 && valor > 0 && valor <= 300) {
+        if (valor % 5 === 0 && valor > 0 && valor <= 300) {
             this.espaco = valor;
         }
     };

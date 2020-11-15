@@ -90,6 +90,38 @@ function Elementos() {
         }
     };
 
+    this.importar = function () {
+        var file = document.getElementById('arquivoCena').files[0];
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            console.log(reader.result);
+            try {
+                var resultado = JSON.parse(reader.result);
+                carregarCena(resultado);
+            } catch(e) {
+                alert("Formato de arquivo incompatível.");
+            }
+        };
+        
+        reader.readAsText(file);
+    };
+    
+    var carregarCena = function(elementos_){
+        for(var idx in elementos_){
+            var imagem = new Image();
+            imagem.src = "\img\\" + elementos_[idx].imagem;
+            
+            var el = new Elemento(imagem);
+            el.etiqueta = elementos_[idx].etiqueta;
+            el.x = elementos_[idx].x;
+            el.y = elementos_[idx].y;
+            el.largura = elementos_[idx].largura;
+            el.altura = elementos_[idx].altura;
+            elementos.push(el);
+        }
+    };
+
     this.exportar = function (formatador) {
         console.log(elementos);
         if (formatador !== undefined) {

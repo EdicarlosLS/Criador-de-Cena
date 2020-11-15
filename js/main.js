@@ -15,9 +15,10 @@ var ponteiroY = 0;
 
 function novoElemento() {
     var img = new Image();
-    carregadorDeImagem.carregar(function (src, deuCerto) {
+    carregadorDeImagem.carregar(function (src, title, deuCerto) {
         if (deuCerto) {
             img.src = src;
+            img.title = title;
             img.onload = function () {
                 elementos.novo(img);
                 editorDeElementos.carregarDados(elementos.getSelecionado());
@@ -31,8 +32,13 @@ function novoElemento() {
 function selecionar(event) {
     clicou = true;
     elementos.selecionarElementoEm((event.clientX + dadosCanvas.eixoX) / dadosCanvas.zoom, (event.clientY + dadosCanvas.eixoY) / dadosCanvas.zoom);
+    if (elementos.getSelecionado() === undefined) {
+        editorCanvas.selecionar(event.clientX, event.clientY);
+    } else {
+        editorCanvas.desselecionar();
+    }
     move(event.clientX, event.clientY);
-    
+
 }
 
 function desselecionar() {
@@ -55,12 +61,14 @@ function move(x, y) {
     {
         ponteiroX = (x + dadosCanvas.eixoX) / dadosCanvas.zoom - elementos.deslocamentoX;
         ponteiroY = (y + dadosCanvas.eixoY) / dadosCanvas.zoom - elementos.deslocamentoY;
-       
-    }    
+
+        editorCanvas.move(x, y);
+        editorCanvas.alterarDados(dadosCanvas);
+    }
 }
 
 function clonar() {
-    elementos.clonar();    
+    elementos.clonar();
     editorDeElementos.carregarDados(elementos.getSelecionado());
 }
 
@@ -76,8 +84,13 @@ function enviarParaTras() {
     elementos.enviarParaTras();
 }
 
+function importar() {
+    elementos.importar();
+}
+
 function exportar() {
     elementos.exportar(new FormatadorPadrao());
+    elementos.exportar(new FormatadorJSON());
 }
 
 function alterarGrade() {
