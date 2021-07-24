@@ -7,7 +7,7 @@ function CarregadorDeImagem() {
         reader.onloadend = function () {
             funcao(reader.result, file.name, true);
         }
-
+        
         if (file) {
             reader.readAsDataURL(file);
         } else {
